@@ -10,6 +10,7 @@ import com.destructivegenius.nodetrek.GameConfig;
 //import com.destructivegenius.nodetrek.nodes.BulletCollisionNode;
 import com.destructivegenius.nodetrek.nodes.GameNode;
 import com.destructivegenius.nodetrek.nodes.SpaceshipNode;
+import com.destructivegenius.nodetrek.nodes.PlanetNode;
 
 import flash.geom.Point;
 
@@ -20,6 +21,7 @@ class GameManager extends System
 
     private var gameNodes:NodeList<GameNode>;
     private var spaceships:NodeList<SpaceshipNode>;
+    private var planets:NodeList<PlanetNode>;
     //private var asteroids:NodeList<AsteroidCollisionNode>;
     //private var bullets:NodeList<BulletCollisionNode>;
 
@@ -34,6 +36,7 @@ class GameManager extends System
     {
         gameNodes = engine.getNodeList(GameNode);
         spaceships = engine.getNodeList(SpaceshipNode);
+        planets = engine.getNodeList(PlanetNode);
         //asteroids = engine.getNodeList(AsteroidCollisionNode);
         //bullets = engine.getNodeList(BulletCollisionNode);
     }
@@ -70,25 +73,15 @@ class GameManager extends System
                 }
             }
 
-/*            if (asteroids.empty && bullets.empty && !spaceships.empty)
-            {
-                // next level
-                var spaceship:SpaceshipNode = spaceships.head;
-                node.state.level++;
-                var asteroidCount:Int = 2 + node.state.level;
-                for (i in 0...asteroidCount)
-                {
-                    // check not on top of spaceship
-                    var position:Point;
-                    do
-                    {
-                        position = new Point( Math.random() * config.width, Math.random() * config.height );
+            if( planets.empty && !spaceships.empty ) {
+                var scale:Int = 100;
+                for( x in 0...5 ) {
+                    for( y in 0...5 ) {
+                        creator.createPlanet(x*scale, y*scale);
                     }
-                    while (Point.distance(position, spaceship.position.position) <= 80);
-                    creator.createAsteroid(30, position.x, position.y);
                 }
+
             }
-*/
         }
     }
 
@@ -96,6 +89,7 @@ class GameManager extends System
     {
         gameNodes = null;
         spaceships = null;
+        planets = null;
         //asteroids = null;
         //bullets = null;
     }

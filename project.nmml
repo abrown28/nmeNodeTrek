@@ -3,7 +3,8 @@
 	
 	<meta title="NodeTrek" package="com.destructivegenius.nodetrek" version="1.0.0" company="Destructive Genius" />
 	<app main="com.destructivegenius.nodetrek.Main" path="Export" file="NodeTrek" />
-	
+	<window width="800" height="600" fps="60" orientation="portrait" resizable="false" />
+ 
 	<source path="Source" />
 	
 	<haxelib name="nme" />

@@ -5,8 +5,8 @@ import flash.display.Shape;
 
 class SpaceshipView extends Shape
 {
-    public function new()
-    {
+    public function new() {
+
         super();
         graphics.beginFill(0x000000);
         graphics.moveTo(10, 0);
@@ -15,6 +15,7 @@ class SpaceshipView extends Shape
         graphics.lineTo(-7, -7);
         graphics.lineTo(10, 0);
         graphics.endFill();
+        
     }
 
 }

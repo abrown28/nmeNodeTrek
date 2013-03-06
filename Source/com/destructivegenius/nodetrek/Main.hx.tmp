@@ -20,6 +20,8 @@ class Main extends Sprite {
 
 		stage.align = StageAlign.TOP_LEFT;
 		stage.scaleMode = StageScaleMode.NO_SCALE;
+		stage.stageWidth = 800;
+		stage.stageHeight = 600;
 
 		var nodetrek = new NodeTrek(this, stage.stageWidth, stage.stageHeight);
 		nodetrek.start();
@@ -29,5 +31,4 @@ class Main extends Sprite {
     {
         Lib.current.addChild(new Main());
     }
-
 }
