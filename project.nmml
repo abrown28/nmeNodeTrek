@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	
+	<meta title="NodeTrek" package="com.destructivegenius.nodetrek" version="1.0.0" company="Destructive Genius" />
+	<app main="com.destructivegenius.nodetrek.Main" path="Export" file="NodeTrek" />
+	
+	<source path="Source" />
+	
+	<haxelib name="nme" />
+	<haxelib name="actuate" />
+	<haxelib name="ash" />
+	
+	<assets path="Assets" rename="assets" exclude="nme.svg" />
+	<icon path="Assets/nme.svg" />
+	
+</project>
