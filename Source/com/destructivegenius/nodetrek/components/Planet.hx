@@ -1,18 +1,25 @@
 
 package com.destructivegenius.nodetrek.components;
 
+import haxe.FastList;
+import com.destructivegenius.nodetrek.components.Resource;
+import ash.core.Entity;
+
 class Planet {
 
-	public var armies:Int;
-	public var fuel:Bool;
-	public var repair:Bool;
-	public var agri:Bool;
+	public var orbit:Float;
+	public var rotation:Float;
+	public var sun:Entity;
+	public var resources:haxe.FastList<Resource>;
 
-	public function new(armies:Int, fuel:Bool, repair:Bool, agri:Bool) {
-		this.armies = armies;
-		this.fuel = fuel;
-		this.repair = repair;
-		this.agri = agri;
+
+
+	public function new( sun:Entity, orbit:Int, rotation:Float ) {
+
+		this.sun = sun;
+		this.orbit = orbit;
+		this.rotation = rotation;
+
 	}	
 
 }

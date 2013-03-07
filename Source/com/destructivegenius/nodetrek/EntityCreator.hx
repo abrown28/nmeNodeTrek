@@ -15,10 +15,15 @@ import com.destructivegenius.nodetrek.components.MotionControls;
 import com.destructivegenius.nodetrek.components.Position;
 import com.destructivegenius.nodetrek.components.Player;
 import com.destructivegenius.nodetrek.components.Planet;
+import com.destructivegenius.nodetrek.components.Sun;
 import com.destructivegenius.nodetrek.components.Display;
+import com.destructivegenius.nodetrek.components.Resource;
+
 import com.destructivegenius.nodetrek.graphics.PlanetView;
+import com.destructivegenius.nodetrek.graphics.SunView;
 import com.destructivegenius.nodetrek.graphics.PlayerView;
 
+import com.destructivegenius.nodetrek.systems.ResourceTypes;
 
 class EntityCreator {
 
@@ -74,15 +79,41 @@ class EntityCreator {
         return player;
     }
 
-    public function createPlanet(x:Int, y:Int):Entity {
+    public function createPlanet(sun:Entity, orbit:Int, rotation:Float):Entity {
 
         var planet:Entity = new Entity()
+            .add(new Planet(sun, orbit, rotation) )
             .add(new Position(x, y, 0))
+            .add(new Resource(ResourceTypes.armies, 1) )
             .add(new Display(new PlanetView()) );
 
         engine.addEntity(planet);
 
         return planet;
+
+    }
+
+    public function createSun(x:Int, y:Int):Entity {
+
+        var sun:Entity = new Entity()
+            .add( new Sun() )
+            .add( new Position(x, y, 0) )
+            .add( new Display(new SunView()) );
+
+        engine.addEntity(sun);
+
+        return sun;
+
+    }
+
+    public function createSolarSystem(x:Int, y:Int):Void {
+
+        var sun:Entity = createSun(x,y);
+        for( index in 1...4 ) {
+         
+            createPlanet(sun, index, 90*180/Math.PI);
+
+        }
 
     }
 }

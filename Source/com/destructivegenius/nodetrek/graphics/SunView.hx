@@ -3,15 +3,15 @@ package com.destructivegenius.nodetrek.graphics;
 
 import flash.display.Shape;
 
-class PlanetView extends Shape {
+class SunView extends Shape {
 
 	public function new() {
 
 		super();
-		graphics.beginFill(0xaa0000);
-        graphics.drawCircle(0,0,18);
+		graphics.beginFill(0xEEEE00);
+        graphics.drawCircle(0,0,30);
         graphics.endFill();
 
-	}
+	}	
 
 }

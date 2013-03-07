@@ -45,13 +45,14 @@ class GameManager extends System
             }
 
             if( planets.empty && !players.empty ) {
-                var scale:Int = 100;
+/*                var scale:Int = 100;
                 for( x in 0...5 ) {
                     for( y in 0...5 ) {
                         creator.createPlanet(x*scale, y*scale);
                     }
                 }
-
+*/
+                creator.createSolarSystem(300, 300);
             }
         }
     }
