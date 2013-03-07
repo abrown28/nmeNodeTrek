@@ -2,6 +2,7 @@
 package com.destructivegenius.nodetrek;
 
 import flash.ui.Keyboard;
+import flash.geom.Point;
 
 import ash.core.Entity;
 import ash.core.Engine;
@@ -70,7 +71,7 @@ class EntityCreator {
 
         player
             .add( new Player( fsm ) )
-            .add( new Position( x, y, 0 ) );
+            .add( new Position( new Point(x,y), new Point(0,0), 0 ) );
 
         fsm.changeState( "playing" );
         
@@ -79,11 +80,11 @@ class EntityCreator {
         return player;
     }
 
-    public function createPlanet(sun:Entity, orbit:Int, rotation:Float):Entity {
+    public function createPlanet(position:Position, orbit:Int, rotation:Float):Entity {
 
         var planet:Entity = new Entity()
-            .add(new Planet(sun, orbit, rotation) )
-            .add(new Position(x, y, 0))
+            .add(new Planet() )
+            .add(position)
             .add(new Resource(ResourceTypes.armies, 1) )
             .add(new Display(new PlanetView()) );
 
@@ -97,7 +98,7 @@ class EntityCreator {
 
         var sun:Entity = new Entity()
             .add( new Sun() )
-            .add( new Position(x, y, 0) )
+            .add( new Position( new Point(x,y), new Point(0,0), 0) )
             .add( new Display(new SunView()) );
 
         engine.addEntity(sun);
@@ -111,7 +112,7 @@ class EntityCreator {
         var sun:Entity = createSun(x,y);
         for( index in 1...4 ) {
          
-            createPlanet(sun, index, 90*180/Math.PI);
+            createPlanet(sun.get(Position), index, 90*180/Math.PI);
 
         }
 
