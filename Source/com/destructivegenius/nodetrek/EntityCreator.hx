@@ -80,11 +80,12 @@ class EntityCreator {
         return player;
     }
 
-    public function createPlanet(position:Position, orbit:Int, rotation:Float):Entity {
+    public function createPlanet(sun:Position, orbit:Int, rotation:Float):Entity {
 
+        var p = new Point( sun.position.x+orbit*50, sun.position.y);
         var planet:Entity = new Entity()
             .add(new Planet() )
-            .add(position)
+            .add(new Position(p, new Point(0, 0), 0) )
             .add(new Resource(ResourceTypes.armies, 1) )
             .add(new Display(new PlanetView()) );
 
