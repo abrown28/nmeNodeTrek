@@ -1,17 +1,15 @@
 
 package com.destructivegenius.nodetrek.graphics;
 
-import flash.display.Shape;
+import flash.display.Bitmap;
+import openfl.Assets;
 
-class SunView extends Shape {
+class SunView extends Bitmap {
 
 	public function new() {
-
 		super();
-		graphics.beginFill(0xEEEE00);
-        graphics.drawCircle(0,0,30);
-        graphics.endFill();
-
+		
+		bitmapData = Assets.getBitmapData("assets/sprites/sun01.png");
 	}	
 
 }

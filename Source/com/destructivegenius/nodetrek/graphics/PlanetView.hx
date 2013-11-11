@@ -1,17 +1,15 @@
 
 package com.destructivegenius.nodetrek.graphics;
 
-import flash.display.Shape;
+import flash.display.Bitmap;
+import openfl.Assets;
 
-class PlanetView extends Shape {
+class PlanetView extends Bitmap {
 
 	public function new() {
-
 		super();
-		graphics.beginFill(0xaa0000);
-        graphics.drawCircle(0,0,18);
-        graphics.endFill();
-
+		
+		bitmapData = Assets.getBitmapData("assets/sprites/p1_48x48.png");
 	}
 
 }

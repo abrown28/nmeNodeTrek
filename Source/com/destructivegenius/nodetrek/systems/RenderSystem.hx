@@ -49,8 +49,8 @@ class RenderSystem extends System
             var displayObject:DisplayObject = node.displayObject;
             var position:Position = node.position;
 
-            displayObject.x = position.position.x;
-            displayObject.y = position.position.y;
+            displayObject.x = position.position.x - position.offset.x;
+            displayObject.y = position.position.y - position.offset.y;
             displayObject.rotation = position.rotation * 180 / Math.PI;
         }
     }
