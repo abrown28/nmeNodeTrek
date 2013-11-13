@@ -41,7 +41,8 @@ class GameManager extends System
         {
             if (players.empty)
             {
-                creator.createPlayer(config.width * 0.5, config.height * 0.5);
+                //creator.createPlayer(config.width * 0.5, config.height * 0.5);
+				creator.createPlayer(0,0);
             }
 
             if( planets.empty && !players.empty ) {

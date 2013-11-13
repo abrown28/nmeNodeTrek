@@ -11,6 +11,7 @@
 	<haxelib name="actuate" />
 	<haxelib name="ash" />
 	<haxelib name="spritesheet" />
+	<haxelib name="box2d" />
 	
 	<assets path="Assets" rename="assets" exclude="nme.svg" />
 	<icon path="Assets/nme.svg" />
