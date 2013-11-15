@@ -3,9 +3,11 @@ package com.destructivegenius.nodetrek.systems;
 
 import ash.tools.ListIteratingSystem;
 
-import com.destructivegenius.nodetrek.components.Motion;
-import com.destructivegenius.nodetrek.components.MotionControls;
-import com.destructivegenius.nodetrek.components.Position;
+import box2D.common.math.*;
+import box2D.dynamics.*;
+import box2D.collision.*;
+
+import com.destructivegenius.nodetrek.components.*;
 import com.destructivegenius.nodetrek.nodes.MotionControlNode;
 import com.destructivegenius.nodetrek.KeyPoll;
 
@@ -22,23 +24,32 @@ class MotionControlSystem extends ListIteratingSystem<MotionControlNode>
     private function updateNode(node:MotionControlNode, time:Float):Void
     {
         var control:MotionControls = node.control;
-        var position:Position = node.position;
+        var body:B2Body = node.body.body;
         var motion:Motion = node.motion;
 
+		body.applyTorque(0);
         if (keyPoll.isDown(control.left))
         {
-            position.rotation -= control.rotationRate * time;
+            //position.rotation -= control.rotationRate * time;
+			body.applyTorque(control.rotationRate*-1);
         }
 
         if (keyPoll.isDown(control.right))
         {
-            position.rotation += control.rotationRate * time;
+            //position.rotation += control.rotationRate * time;
+			body.applyTorque(control.rotationRate);
         }
 
         if (keyPoll.isDown(control.accelerate))
         {
-            motion.velocity.x += Math.cos(position.rotation) * control.accelerationRate * time;
-            motion.velocity.y += Math.sin(position.rotation) * control.accelerationRate * time;
+			var force = new B2Vec2(-1,0);
+			var transform:B2Transform = body.getTransform();
+			force = B2Math.mulMV(transform.R, force);
+			
+			//body.applyForce(force, new B2Vec2(0,0));
+			body.applyImpulse(force, body.m_sweep.c);
+            //motion.velocity.x += Math.cos(position.rotation) * control.accelerationRate * time;
+            //motion.velocity.y += Math.sin(position.rotation) * control.accelerationRate * time;
         }
     }
 }

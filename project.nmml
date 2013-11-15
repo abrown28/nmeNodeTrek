@@ -13,6 +13,9 @@
 	<haxelib name="spritesheet" />
 	<haxelib name="box2d" />
 	
+	<set name="SHOW_CONSOLE" value="1"/>
+	<haxedef name="SHOW_CONSOLE"/>
+	
 	<assets path="Assets" rename="assets" exclude="nme.svg" />
 	<icon path="Assets/nme.svg" />
 	

@@ -49,19 +49,20 @@ class RenderSystem extends System
 	{
 		var p = player.head;
 
-		var camera_x = p.position.position.x * -1;
-		var camera_y = p.position.position.y * -1;
-
+		var camera = p.body.body.getPosition();
+		camera.multiply(-1.0);
+		
         for (node in nodes)
         {
 			var displayObject:DisplayObject = node.displayObject;
-			var position:Position = node.position;
+			var pos = node.body.body.getPosition();
+			var rot = node.body.body.getAngle();
 			
-			displayObject.rotation = position.rotation * 180 / Math.PI;
+			displayObject.rotation = rot * 180 / Math.PI;
 
 			if( node.entity != p.entity ) {
-				displayObject.x = position.position.x - position.offset.x + camera_x;
-				displayObject.y = position.position.y - position.offset.y + camera_y;
+				displayObject.x = pos.x - camera.x;
+				displayObject.y = pos.y - camera.y;
 			}
 			else {
 				displayObject.x = 400;

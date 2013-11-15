@@ -7,5 +7,5 @@ import com.destructivegenius.nodetrek.components.*;
 class LocalPlayerNode extends Node<LocalPlayerNode>
 {
     public var player:LocalPlayer;
-	public var position:Position;
+	public var body:Body;
 }

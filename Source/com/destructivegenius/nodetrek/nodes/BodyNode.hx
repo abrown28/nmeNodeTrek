@@ -1,13 +1,9 @@
 package com.destructivegenius.nodetrek.nodes;
 
 import ash.core.Node;
-
-
 import com.destructivegenius.nodetrek.components.Body;
-import com.destructivegenius.nodetrek.components.Player;
 
-class PlayerNode extends Node<PlayerNode>
+class BodyNode extends Node<BodyNode>
 {
     public var body:Body;
-    public var player:Player;
 }

@@ -6,6 +6,7 @@ import ash.core.Node;
 
 import com.destructivegenius.nodetrek.components.Display;
 import com.destructivegenius.nodetrek.components.Position;
+import com.destructivegenius.nodetrek.components.Body;
 
 /**
  * Node for rendering. Note that here it demonstrates how nodes work:
@@ -16,10 +17,10 @@ import com.destructivegenius.nodetrek.components.Position;
  **/
 class RenderNode extends Node<RenderNode>
 {
-    public var position:Position;
+    public var body:Body;
     private var display:Display;
-
     public var displayObject(get_displayObject, never):DisplayObject;
+	
     private function get_displayObject():DisplayObject
     {
         return display.displayObject;

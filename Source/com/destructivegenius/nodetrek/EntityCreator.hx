@@ -65,7 +65,8 @@ class EntityCreator {
         player
             .add( new Player( fsm ) )
 			.add( new LocalPlayer() )
-            .add( new Position( new B2Vec2(x,y), new Point(0,0), 0 ) );
+			.add( new Body(x,y) )
+            ;//.add( new Position( new B2Vec2(x,y), new Point(0,0), 0 ) );
 
         fsm.changeState( "playing" );
         
@@ -81,6 +82,7 @@ class EntityCreator {
             .add(new Planet() )
             .add(new Position(p, new Point(0, 0), 0) )
             .add(new Resource(ResourceTypes.armies, 1) )
+			.add( new Body(p.x, p.y) )
             .add(new Display(new PlanetView()) );
 
         engine.addEntity(planet);
@@ -94,8 +96,6 @@ class EntityCreator {
 		var sunview:SunView = new SunView();
 		var offsetX:Float = sunview.width / 2.0;
 		var offsetY:Float = sunview.height / 2.0;
-		trace(offsetX);
-		trace(offsetY);
 		
         var sun:Entity = new Entity()
             .add( new Sun() )

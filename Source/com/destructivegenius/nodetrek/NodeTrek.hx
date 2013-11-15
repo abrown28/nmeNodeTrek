@@ -8,11 +8,7 @@ import ash.tick.FrameTickProvider;
 import ash.core.Engine;
 
 import com.destructivegenius.nodetrek.GameConfig;
-import com.destructivegenius.nodetrek.systems.GameManager;
-import com.destructivegenius.nodetrek.systems.SystemPriorities;
-import com.destructivegenius.nodetrek.systems.RenderSystem;
-import com.destructivegenius.nodetrek.systems.MotionControlSystem;
-import com.destructivegenius.nodetrek.systems.MovementSystem;
+import com.destructivegenius.nodetrek.systems.*;
 import com.destructivegenius.nodetrek.KeyPoll;
 
 class NodeTrek {
@@ -44,6 +40,7 @@ class NodeTrek {
 //        engine.addSystem(new GunControlSystem( keyPoll, creator ), SystemPriorities.update);
 //        engine.addSystem(new BulletAgeSystem( creator ), SystemPriorities.update);
 //        engine.addSystem(new DeathThroesSystem( creator ), SystemPriorities.update);
+		engine.addSystem(new Box2DPhysicsSystem(), SystemPriorities.update);
         engine.addSystem(new MovementSystem( config ), SystemPriorities.move);
 //        engine.addSystem(new CollisionSystem( creator ), SystemPriorities.resolveCollisions);
 //        engine.addSystem(new AnimationSystem(), SystemPriorities.animate);

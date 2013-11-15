@@ -5,11 +5,11 @@ import ash.core.Node;
 
 import com.destructivegenius.nodetrek.components.Motion;
 import com.destructivegenius.nodetrek.components.MotionControls;
-import com.destructivegenius.nodetrek.components.Position;
+import com.destructivegenius.nodetrek.components.Body;
 
 class MotionControlNode extends Node<MotionControlNode>
 {
     public var control:MotionControls;
-    public var position:Position;
+    public var body:Body;
     public var motion:Motion;
 }
