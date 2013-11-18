@@ -25,9 +25,8 @@ class MotionControlSystem extends ListIteratingSystem<MotionControlNode>
     {
         var control:MotionControls = node.control;
         var body:B2Body = node.body.body;
-        var motion:Motion = node.motion;
+        //var motion:Motion = node.motion;
 
-		body.applyTorque(0);
         if (keyPoll.isDown(control.left))
         {
             //position.rotation -= control.rotationRate * time;

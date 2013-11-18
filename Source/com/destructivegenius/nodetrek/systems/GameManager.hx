@@ -6,9 +6,7 @@ import ash.core.System;
 
 import com.destructivegenius.nodetrek.EntityCreator;
 import com.destructivegenius.nodetrek.GameConfig;
-import com.destructivegenius.nodetrek.nodes.GameNode;
-import com.destructivegenius.nodetrek.nodes.PlanetNode;
-import com.destructivegenius.nodetrek.nodes.PlayerNode;
+import com.destructivegenius.nodetrek.nodes.*;
 
 import flash.geom.Point;
 
@@ -18,7 +16,7 @@ class GameManager extends System
     private var creator:EntityCreator;
 
     private var gameNodes:NodeList<GameNode>;
-    private var planets:NodeList<PlanetNode>;
+    private var orbitals:NodeList<OrbitalNode>;
     private var players:NodeList<PlayerNode>;
 
     public function new(creator:EntityCreator, config:GameConfig)
@@ -31,7 +29,7 @@ class GameManager extends System
     override public function addToEngine(engine:Engine):Void
     {
         gameNodes = engine.getNodeList(GameNode);
-        planets = engine.getNodeList(PlanetNode);
+        orbitals = engine.getNodeList(OrbitalNode);
         players = engine.getNodeList(PlayerNode);
     }
 
@@ -45,7 +43,7 @@ class GameManager extends System
 				creator.createPlayer(0,0);
             }
 
-            if( planets.empty && !players.empty ) {
+            if( orbitals.empty && !players.empty ) {
 /*                var scale:Int = 100;
                 for( x in 0...5 ) {
                     for( y in 0...5 ) {
@@ -53,7 +51,8 @@ class GameManager extends System
                     }
                 }
 */
-                creator.createSolarSystem(300, 300);
+
+                creator.createSolarSystem(100, 100);
             }
         }
     }
@@ -61,7 +60,7 @@ class GameManager extends System
     override public function removeFromEngine(engine:Engine):Void
     {
         gameNodes = null;
-        planets = null;
+        orbitals = null;
         players = null;
     }
 }

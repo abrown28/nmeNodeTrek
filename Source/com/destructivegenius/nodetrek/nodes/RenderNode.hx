@@ -4,9 +4,7 @@ import flash.display.DisplayObject;
 
 import ash.core.Node;
 
-import com.destructivegenius.nodetrek.components.Display;
-import com.destructivegenius.nodetrek.components.Position;
-import com.destructivegenius.nodetrek.components.Body;
+import com.destructivegenius.nodetrek.components.*;
 
 /**
  * Node for rendering. Note that here it demonstrates how nodes work:

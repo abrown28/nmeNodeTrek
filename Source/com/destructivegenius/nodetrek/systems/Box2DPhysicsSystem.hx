@@ -22,8 +22,16 @@ class Box2DPhysicsSystem extends ListIteratingSystem<BodyNode> {
 		world = new B2World(gravity, true);
     }
 
+
+	private var accumulator:Float = 0.0;
+	private var step_time:Float = 1.0/30.0;
 	override public function update(time:Float):Void {
-		world.step(time, velocityIterations, positionIterations);
+
+		accumulator += time;
+		while( accumulator >= step_time ) {
+			world.step(step_time, velocityIterations, positionIterations);
+			accumulator -= step_time;
+		}
 	}
 	
 	private function nodeUpdate(node:BodyNode, time:Float):Void {
@@ -38,10 +46,11 @@ class Box2DPhysicsSystem extends ListIteratingSystem<BodyNode> {
 		node.body.fixture = node.body.body.createFixture(node.body.fixtureDef); 
 		
 		//node.body.body.setLinearDamping(0.1);
-		node.body.body.setAngularDamping(0.9);
+		//node.body.body.setAngularDamping(0.9);
 
 	}
 	
 	private function nodeRemove(node:BodyNode):Void {
+		world.destroyBody(node.body.body);
 	}
 }

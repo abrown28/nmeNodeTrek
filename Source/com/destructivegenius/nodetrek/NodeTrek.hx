@@ -41,7 +41,7 @@ class NodeTrek {
 //        engine.addSystem(new BulletAgeSystem( creator ), SystemPriorities.update);
 //        engine.addSystem(new DeathThroesSystem( creator ), SystemPriorities.update);
 		engine.addSystem(new Box2DPhysicsSystem(), SystemPriorities.update);
-        engine.addSystem(new MovementSystem( config ), SystemPriorities.move);
+        //engine.addSystem(new MovementSystem( config ), SystemPriorities.move);
 //        engine.addSystem(new CollisionSystem( creator ), SystemPriorities.resolveCollisions);
 //        engine.addSystem(new AnimationSystem(), SystemPriorities.animate);
         engine.addSystem(new RenderSystem( container ), SystemPriorities.render);

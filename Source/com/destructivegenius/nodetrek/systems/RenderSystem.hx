@@ -8,15 +8,14 @@ import ash.core.NodeList;
 import ash.core.System;
 
 import com.destructivegenius.nodetrek.components.*;
-import com.destructivegenius.nodetrek.nodes.RenderNode;
-import com.destructivegenius.nodetrek.nodes.LocalPlayerNode;
+import com.destructivegenius.nodetrek.nodes.*;
 
 class RenderSystem extends System
 {
     public var container:DisplayObjectContainer;
 
     private var nodes:NodeList<RenderNode>;
-	private var player:NodeList<LocalPlayerNode>;
+	private var player:NodeList<PlayerNode>;
 
     public function new(container:DisplayObjectContainer)
     {
@@ -32,7 +31,7 @@ class RenderSystem extends System
         nodes.nodeAdded.add(addToDisplay);
         nodes.nodeRemoved.add(removeFromDisplay);
 		
-		player = engine.getNodeList(LocalPlayerNode);
+		player = engine.getNodeList(PlayerNode);
     }
 
     private function addToDisplay(node:RenderNode):Void
@@ -49,25 +48,19 @@ class RenderSystem extends System
 	{
 		var p = player.head;
 
-		var camera = p.body.body.getPosition();
+		var player = p.body.body.getPosition();
+		var camera = player.copy();
 		camera.multiply(-1.0);
-		
+
         for (node in nodes)
         {
 			var displayObject:DisplayObject = node.displayObject;
 			var pos = node.body.body.getPosition();
 			var rot = node.body.body.getAngle();
-			
-			displayObject.rotation = rot * 180 / Math.PI;
 
-			if( node.entity != p.entity ) {
-				displayObject.x = pos.x - camera.x;
-				displayObject.y = pos.y - camera.y;
-			}
-			else {
-				displayObject.x = 400;
-				displayObject.y = 300;
-			}
+			displayObject.rotation = rot * 180 / Math.PI;
+			displayObject.x = pos.x + camera.x + 400;
+			displayObject.y = pos.y + camera.y + 300;
 		}
     }
 

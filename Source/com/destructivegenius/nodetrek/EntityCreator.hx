@@ -11,10 +11,7 @@ import ash.tools.ComponentPool;
 
 import com.destructivegenius.nodetrek.GameConfig;
 import com.destructivegenius.nodetrek.components.*;
-import com.destructivegenius.nodetrek.graphics.PlanetView;
-import com.destructivegenius.nodetrek.graphics.SunView;
-import com.destructivegenius.nodetrek.graphics.PlayerView;
-import com.destructivegenius.nodetrek.graphics.PlayerViewSprite;
+import com.destructivegenius.nodetrek.graphics.*;
 import com.destructivegenius.nodetrek.systems.ResourceTypes;
 
 import box2D.common.math.B2Vec2;
@@ -51,39 +48,24 @@ class EntityCreator {
     public function createPlayer(x:Float, y:Float):Entity {
         var player:Entity = new Entity();
 
-        var fsm : EntityStateMachine = new EntityStateMachine( player );
-
-        fsm.createState("playing")
-            .add( Motion ).withInstance( new Motion( 0, 0, 0, 15) )
-            .add( MotionControls ).withInstance( new MotionControls( Keyboard.LEFT, Keyboard.RIGHT, Keyboard.UP, 100, 3 ) )
-            .add( Display ).withInstance( new Display( new PlayerView() ) );
-
-        //fsm.createState("joining")
-        //fsm.createState("spawning")
-        //fsm.createState("dead")
-
         player
-            .add( new Player( fsm ) )
-			.add( new LocalPlayer() )
+			//.add( new LocalPlayer() )
 			.add( new Body(x,y) )
-            ;//.add( new Position( new B2Vec2(x,y), new Point(0,0), 0 ) );
+			.add( new Player() )
+			.add( new MotionControls( Keyboard.LEFT, Keyboard.RIGHT, Keyboard.UP, 100, 3 ) )
+			.add( new Display(new PlayerView()) );
 
-        fsm.changeState( "playing" );
-        
-        engine.addEntity(player);
+		engine.addEntity(player);
 
         return player;
     }
 
-    public function createPlanet(sun:Position, orbit:Int, rotation:Float):Entity {
+    public function createPlanet(x:Float, y:Float, orbit:Int, rotation:Float):Entity {
 
-        var p = new B2Vec2( sun.position.x+orbit*50, sun.position.y);
         var planet:Entity = new Entity()
-            .add(new Planet() )
-            .add(new Position(p, new Point(0, 0), 0) )
-            .add(new Resource(ResourceTypes.armies, 1) )
-			.add( new Body(p.x, p.y) )
-            .add(new Display(new PlanetView()) );
+            .add( new Orbital() )
+			.add( new Body(x, y) )
+            .add( new Display(new PlanetView()) );
 
         engine.addEntity(planet);
 
@@ -93,14 +75,10 @@ class EntityCreator {
 
     public function createSun(x:Int, y:Int):Entity {
 
-		var sunview:SunView = new SunView();
-		var offsetX:Float = sunview.width / 2.0;
-		var offsetY:Float = sunview.height / 2.0;
-		
         var sun:Entity = new Entity()
-            .add( new Sun() )
-            .add( new Position( new B2Vec2(x,y), new Point(offsetX,offsetY), 0) )
-            .add( new Display(sunview) );
+            .add( new Orbital() )
+            .add( new Body( x, y ) )
+            .add( new Display(new SunView()) );
 
         engine.addEntity(sun);
 
@@ -113,7 +91,7 @@ class EntityCreator {
         var sun:Entity = createSun(x,y);
         for( index in 1...4 ) {
          
-            createPlanet(sun.get(Position), index, 90*180/Math.PI);
+            createPlanet(x+50*index, y, index, 90*180/Math.PI);
 
         }
 
